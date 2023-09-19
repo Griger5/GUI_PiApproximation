@@ -1,10 +1,6 @@
 from tkinter import *
 import random
 
-inside = 0
-outside = 0
-piApprox = 0
-
 def createCircle(self, x, y, r, **kwargs):
     return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)
 Canvas.createCircle = createCircle
@@ -32,7 +28,9 @@ class GUI():
         main.mainloop()
     
     def pointSimulation(self, num):
-        global inside, outside, piApprox
+        inside = 0
+        outside = 0
+        piApprox = 0
 
         for i in range(num):
             xCoordinate = random.randint(50, 1050)
