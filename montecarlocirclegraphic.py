@@ -1,5 +1,4 @@
 from tkinter import *
-from multiprocessing import Process
 import random
 
 inside = 0
@@ -52,17 +51,6 @@ class GUI():
                 piApprox = 4*inside/(inside+outside)
                 self.piLabel.config(text=str(piApprox))
                 self.piLabel.update()
-
-    #def multiprocess(self, operations):
-     #   a = Process(target=self.pointSimulation, args=(operations,))
-      #  b = Process(target=self.pointSimulation, args=(operations,))
-       # c = Process(target=self.pointSimulation, args=(operations,))
-        #d = Process(target=self.pointSimulation, args=(operations,))
-
-        #a.start()
-        #b.start()
-        #c.start()
-        #d.start()
 
 if __name__ == "__main__":
     GUI()
