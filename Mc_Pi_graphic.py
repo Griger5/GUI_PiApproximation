@@ -1,5 +1,8 @@
 from tkinter import *
-import random
+from random import randint
+
+inside = 0
+piApprox = 0
 
 def createCircle(self, x, y, r, **kwargs):
     return self.create_oval(x-r, y-r, x+r, y+r, **kwargs)
@@ -21,34 +24,31 @@ class GUI():
         label.place(x=1280, y=300, anchor=CENTER)
         self.piLabel = Label(main, text="0", font=("Arial", 50))
         self.piLabel.place(x=1280, y=375, anchor=CENTER)
-
-        button = Button(main, text="Start", font=("Arial", 30), command=lambda: self.pointSimulation(100000))
+        
+        button = Button(main, text="Start", font=("Arial", 30), command= lambda: self.pointSimulation(10**6))
         button.place(x=1280, y=550, anchor=CENTER)
 
         main.mainloop()
     
     def pointSimulation(self, num):
-        inside = 0
-        outside = 0
-        piApprox = 0
+        global inside, piApprox
 
         for i in range(num):
-            xCoordinate = random.randint(50, 1050)
-            yCoordinate = random.randint(50, 1050)
+            xCoordinate = randint(50, 1050)
+            yCoordinate = randint(50, 1050)
             x = xCoordinate - 550
             y = yCoordinate - 550
 
-            if x**2+y**2 > 250000:
-                outside += 1
-                self.canvas.tag_lower(self.canvas.create_rectangle(xCoordinate, yCoordinate, xCoordinate, yCoordinate, outline="red"))
-            elif x**2+y**2 < 250000:
+            if x**2+y**2 < 250000:
                 inside += 1
                 self.canvas.tag_lower(self.canvas.create_rectangle(xCoordinate, yCoordinate, xCoordinate, yCoordinate, outline="yellow"))
-            
-            if i%5000 == 4999:
-                piApprox = 4*inside/(inside+outside)
+            else:
+                self.canvas.tag_lower(self.canvas.create_rectangle(xCoordinate, yCoordinate, xCoordinate, yCoordinate, outline="red"))
+
+            if i%100 == 99:
+                piApprox = 4*inside/i
                 self.piLabel.config(text=str(piApprox))
-                self.piLabel.update()
+            self.piLabel.update()
 
 if __name__ == "__main__":
     GUI()
