@@ -13,6 +13,10 @@ All codes were tested with a N=100_000_000 sample size. The tests were run on a 
 ### Timed using _cudaEventElapsedTime_ in Jupyter Notebook with [nvcc4jupyter](https://github.com/andreinechaev/nvcc4jupyter) plugin:
 - MC_Pi.cu (Grid-Stride loop): **11.227 milliseconds***
 
+### Timed using built-in _time_/_1_ predicate in SWI-Prolog:
+- MC_Pi.pl: **83.438 seconds**
+
+<br></br>
 <sub>*It seemed a bit strange to me that a native CUDA code ran slower than a Numba code. It's possible that the difference is caused by different timing methods. _MC_Pi_NumbaCUDA.py_'s kernel was ran after CPU->GPU data migration, while the data migration of _MC_Pi.cu_ may not have finished when the kernel started running. As a test, I timed the _MC_Pi.cu_ kernel running once, and 10000 subsequent times. The former resulted in times around 14.5ms, while the latter gave averages as per above, which might suggest my theory. It's also possible that Numba is very well optimized, and even an amateur code can outperform an amateur code written in CUDA.</sub> 
 
 <br></br>
