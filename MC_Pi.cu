@@ -67,6 +67,8 @@ int main() {
         result += inside[i];
     }
 
+    cudaFree(inside);
+
     printf("%f", 4*(double)result/N);
 
     return 0;
